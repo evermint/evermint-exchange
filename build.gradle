@@ -1,0 +1,61 @@
+buildscript {
+	ext {
+		springBootVersion = '2.1.1.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'war'
+
+group = 'com.evermint'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	maven { url "https://repo.spring.io/milestone" }
+}
+
+configurations {
+	providedRuntime
+}
+ext['springCloudVersion'] = 'Greenwich.RC2'
+
+dependencies {
+	implementation('org.springframework.boot:spring-boot-starter-activemq')
+	implementation('org.springframework.boot:spring-boot-starter-actuator')
+//	implementation('org.springframework.boot:spring-boot-starter-jdbc')
+//	implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+//	implementation('org.springframework.boot:spring-boot-starter-jersey')
+	implementation('org.springframework.boot:spring-boot-starter-mail')
+//	implementation('org.springframework.boot:spring-boot-starter-security')
+//	implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
+	implementation('org.springframework.boot:spring-boot-starter-web')
+	implementation('org.springframework.boot:spring-boot-starter-webflux')
+//	implementation('org.flywaydb:flyway-core')
+//	implementation('org.springframework.cloud:spring-cloud-starter-aws')
+//	implementation('org.springframework.cloud:spring-cloud-starter-aws-jdbc')
+//	implementation('org.springframework.cloud:spring-cloud-starter-aws-messaging')
+//	implementation('org.springframework.session:spring-session-jdbc')
+	runtimeOnly('org.springframework.boot:spring-boot-devtools')
+//	compileOnly('org.projectlombok:lombok')
+//	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
+	testImplementation('io.projectreactor:reactor-test')
+	testImplementation('org.springframework.security:spring-security-test')
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
