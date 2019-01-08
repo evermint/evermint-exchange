@@ -1,6 +1,7 @@
 # Compiled class file
 *.class
 .gradle/
+.DS_Store
 
 # Log file
 *.log
@@ -10,7 +11,9 @@
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
-.gradle/4.10.2/fileHashes/fileHashes.lock
+
+#Gradle
+.gradle/
 
 # Package Files #
 *.jar
